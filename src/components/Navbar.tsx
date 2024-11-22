@@ -6,7 +6,7 @@ import { Moon, Sun, Menu, X } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { Button } from './ui/button'
 import { Logo } from './Logo'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 
 export function Navbar() {
@@ -14,30 +14,42 @@ export function Navbar() {
   const { theme, setTheme } = useTheme()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/services', label: 'Services' },
-    { href: '/our-apps', label: 'Our Apps' },
-    { href: '/contact', label: 'Contact' }
-  ]
+  const handleThemeChange = () => {
+    // Add transitioning class
+    document.body.classList.add('transitioning')
+    
+    // First transition to intermediate state
+    setTimeout(() => {
+      // Change theme
+      setTheme(theme === 'dark' ? 'light' : 'dark')
+      
+      // Remove transitioning class after full transition
+      setTimeout(() => {
+        document.body.classList.remove('transitioning')
+      }, 700) // Match the transition duration
+    }, 350) // Half of the transition duration for the midpoint
+  }
 
   return (
-    <nav className="relative z-50">
-      {/* Gradient border effect */}
+    <nav className="relative z-50 theme-transition">
       <div className="absolute inset-x-0 -bottom-[2px] h-[2px] bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
       
-      {/* Navbar content */}
       <div className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between h-20">
-            {/* Logo and links container */}
-            <div className="flex items-center gap-12">
+          <div className="flex justify-between h-16 md:h-20 items-center">
+            <div className="flex items-center gap-4 md:gap-12">
               <Link href="/" className="flex items-center hover:opacity-90 transition-opacity">
                 <Logo />
               </Link>
+              
               {/* Desktop Navigation */}
-              <div className="hidden sm:flex sm:space-x-1">
-                {navLinks.map((link) => (
+              <div className="hidden md:flex md:space-x-1">
+                {[
+                  { href: '/', label: 'Home' },
+                  { href: '/services', label: 'Services' },
+                  { href: '/our-apps', label: 'Our Apps' },
+                  { href: '/contact', label: 'Contact' }
+                ].map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
@@ -58,30 +70,51 @@ export function Navbar() {
               </div>
             </div>
 
-            {/* Theme toggle and mobile menu button */}
             <div className="flex items-center gap-2">
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="relative w-10 h-10 rounded-lg hover:bg-accent/50"
+                onClick={handleThemeChange}
+                className="relative w-10 h-10 rounded-lg hover:bg-accent/50 overflow-hidden group theme-transition"
               >
-                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">Toggle theme</span>
+                <div className="relative w-full h-full">
+                  <Sun 
+                    className={cn(
+                      "h-[1.2rem] w-[1.2rem] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+                      "transition-all duration-500 ease-spring",
+                      "transform group-hover:scale-110",
+                      theme === 'dark' 
+                        ? 'rotate-[-120deg] scale-0 opacity-0' 
+                        : 'rotate-0 scale-100 opacity-100'
+                    )}
+                  />
+                  <Moon 
+                    className={cn(
+                      "h-[1.2rem] w-[1.2rem] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+                      "transition-all duration-500 ease-spring",
+                      "transform group-hover:scale-110",
+                      theme === 'dark'
+                        ? 'rotate-0 scale-100 opacity-100'
+                        : 'rotate-[120deg] scale-0 opacity-0'
+                    )}
+                  />
+                </div>
+                <span className="sr-only">
+                  {theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                </span>
               </Button>
 
               {/* Mobile Menu Button */}
               <Button
                 variant="ghost"
                 size="icon"
-                className="sm:hidden"
+                className="md:hidden"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 {isMenuOpen ? (
-                  <X className="h-6 w-6" />
+                  <X className="h-5 w-5" />
                 ) : (
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-5 w-5" />
                 )}
                 <span className="sr-only">Toggle menu</span>
               </Button>
@@ -91,14 +124,19 @@ export function Navbar() {
           {/* Mobile Navigation */}
           <div
             className={cn(
-              "sm:hidden",
+              "md:hidden",
               "absolute left-0 right-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border",
               "transition-all duration-300 ease-in-out",
               isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
             )}
           >
             <div className="container mx-auto px-4 py-4 space-y-2">
-              {navLinks.map((link) => (
+              {[
+                { href: '/', label: 'Home' },
+                { href: '/services', label: 'Services' },
+                { href: '/our-apps', label: 'Our Apps' },
+                { href: '/contact', label: 'Contact' }
+              ].map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}

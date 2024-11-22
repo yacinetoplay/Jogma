@@ -188,5 +188,10 @@ export function ThreeScene({ selectedBox }: ThreeSceneProps) {
     }
   }, [selectedBox, theme, isClient])
 
-  return <canvas ref={containerRef} className="absolute inset-0 z-0" style={{ width: '100%', height: '100%' }} />
-} 
+  return (
+    <div className="relative w-full h-full">
+      <canvas ref={containerRef} className="absolute inset-0 z-0" />
+     
+    </div>
+  )
+}

@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Code, Smartphone, Palette, Globe, Rocket, Shield } from 'lucide-react'
+import { Code, Smartphone, Palette, Rocket, Shield } from 'lucide-react'
 
 const services = [
   {
@@ -28,13 +28,6 @@ const services = [
     description: "User-centered design solutions that enhance user experience and engagement.",
     features: ["User Research", "Wireframing", "Prototyping", "Visual Design"],
     color: "from-orange-500 to-red-500"
-  },
-  {
-    icon: Globe,
-    title: "Web Hosting",
-    description: "Reliable and secure hosting solutions for your web applications.",
-    features: ["Cloud Hosting", "SSL Certificates", "Domain Management", "24/7 Support"],
-    color: "from-green-500 to-emerald-500"
   },
   {
     icon: Rocket,
@@ -69,47 +62,44 @@ const item = {
 
 export default function Services() {
   return (
-    <div className="min-h-screen bg-background py-16">
+    <div className="min-h-screen bg-background py-8 md:py-16">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4 text-foreground">Our Services</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <div className="text-center mb-8 md:mb-12">
+          <h1 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-foreground">Our Services</h1>
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             Comprehensive digital solutions tailored to your needs
           </p>
         </div>
 
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8"
           variants={container}
           initial="hidden"
           animate="show"
         >
           {services.map((service, index) => (
             <motion.div key={service.title} variants={item}>
-              <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300">
-                <div className="p-6">
+              <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300 h-full">
+                <div className="p-4 md:p-6">
                   <div className="mb-4">
-                    <div className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${service.color} bg-opacity-10`}>
-                      <service.icon className="h-6 w-6 text-foreground" />
+                    <div className={`inline-flex p-2 md:p-3 rounded-lg bg-gradient-to-r ${service.color} bg-opacity-10`}>
+                      <service.icon className="h-5 w-5 md:h-6 md:w-6 text-foreground" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2 text-foreground">{service.title}</h3>
-                  <p className="text-muted-foreground mb-4">{service.description}</p>
-                  <div className="space-y-4">
-                    <div className="flex flex-wrap gap-2">
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 text-foreground">{service.title}</h3>
+                  <p className="text-sm md:text-base text-muted-foreground mb-4">{service.description}</p>
+                  <div className="space-y-3 md:space-y-4">
+                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                       {service.features.map((feature) => (
                         <Badge 
                           key={feature} 
                           variant="outline"
-                          className="bg-background/50 backdrop-blur-sm"
+                          className="text-xs md:text-sm bg-background/50 backdrop-blur-sm"
                         >
                           {feature}
                         </Badge>
                       ))}
                     </div>
-                    <Button asChild variant="outline" className="w-full">
-                      <Link href="/contact">Learn More</Link>
-                    </Button>
                   </div>
                 </div>
                 <div 

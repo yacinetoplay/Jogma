@@ -18,34 +18,26 @@ interface BoxData {
 
 const boxesData: BoxData[] = [
   {
-    title: "TaskMaster",
-    description: "Boost productivity with our intuitive task management app.",
+    title: "MathGenius",
+    description: "An innovative math learning app that makes mathematics fun and engaging for students of all ages.",
     imageSrc: "/placeholder.svg?height=200&width=200",
     status: 'available',
-    tags: ['Productivity', 'Organization'],
-    link: 'https://taskmaster-app.com'
+    tags: ['Education', 'Mathematics'],
+    link: 'https://mathgenius-app.com'
   },
   {
-    title: "FitTrack",
-    description: "Your personal fitness companion for achieving health goals.",
-    imageSrc: "/placeholder.svg?height=200&width=200",
-    status: 'maintenance',
-    tags: ['Health', 'Fitness']
-  },
-  {
-    title: "BudgetBuddy",
-    description: "Take control of your finances with our smart budgeting app.",
-    imageSrc: "/placeholder.svg?height=200&width=200",
-    status: 'available',
-    tags: ['Finance', 'Planning'],
-    link: 'https://budgetbuddy-app.com'
-  },
-  {
-    title: "MindfulMoments",
-    description: "Find peace and reduce stress with our meditation app.",
+    title: "LanguageMaster",
+    description: "Master any language with our AI-powered language learning platform.",
     imageSrc: "/placeholder.svg?height=200&width=200",
     status: 'coming-soon',
-    tags: ['Wellness', 'Meditation']
+    tags: ['Education', 'Languages']
+  },
+  {
+    title: "StudyBuddy",
+    description: "Your personal study companion for better academic performance.",
+    imageSrc: "/placeholder.svg?height=200&width=200",
+    status: 'maintenance',
+    tags: ['Education', 'Productivity']
   }
 ]
 
@@ -76,62 +68,64 @@ export default function OurApps() {
               Discover our suite of innovative applications designed to enhance your daily life
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {boxesData.map((box, index) => (
-              <Card
-                key={index}
-                className={`group transition-all duration-300 hover:shadow-xl
-                  ${box.status === 'maintenance' ? 'opacity-75' : ''}
-                  ${selectedBox === box ? 'ring-2 ring-primary scale-105' : 'hover:scale-102'}
-                `}
-              >
-                <div className="p-6 flex flex-col items-center text-center h-full">
-                  <div 
-                    className="w-32 h-32 rounded-lg mb-4 overflow-hidden bg-muted relative group-hover:shadow-lg transition-all duration-300 cursor-pointer"
-                    onClick={() => box.status !== 'maintenance' && setSelectedBox(box)}
-                  >
-                    <img 
-                      src={box.imageSrc} 
-                      alt={box.title} 
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" 
-                    />
-                    {box.status === 'maintenance' && (
-                      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center">
-                        <span className="text-sm font-medium text-muted-foreground">Temporarily Unavailable</span>
-                      </div>
-                    )}
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2">{box.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4 flex-grow">{box.description}</p>
-                  <div className="space-y-3 w-full">
-                    <div className="flex items-center justify-center gap-2">
-                      {getStatusBadge(box.status)}
-                      {box.status === 'available' && box.link && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="text-xs"
-                          asChild
-                        >
-                          <Link href={box.link} target="_blank" rel="noopener noreferrer">
-                            Visit App
-                          </Link>
-                        </Button>
+          <div className="flex justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl">
+              {boxesData.map((box, index) => (
+                <Card
+                  key={index}
+                  className={`group transition-all duration-300 hover:shadow-xl
+                    ${box.status === 'maintenance' ? 'opacity-75' : ''}
+                    ${selectedBox === box ? 'ring-2 ring-primary scale-105' : 'hover:scale-102'}
+                  `}
+                >
+                  <div className="p-6 flex flex-col items-center text-center h-full">
+                    <div 
+                      className="w-32 h-32 rounded-lg mb-4 overflow-hidden bg-muted relative group-hover:shadow-lg transition-all duration-300 cursor-pointer"
+                      onClick={() => box.status !== 'maintenance' && setSelectedBox(box)}
+                    >
+                      <img 
+                        src={box.imageSrc} 
+                        alt={box.title} 
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" 
+                      />
+                      {box.status === 'maintenance' && (
+                        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center">
+                          <span className="text-sm font-medium text-muted-foreground">Temporarily Unavailable</span>
+                        </div>
                       )}
                     </div>
-                    {box.tags && (
-                      <div className="flex flex-wrap gap-2 justify-center mt-2">
-                        {box.tags.map((tag) => (
-                          <Badge key={tag} variant="outline" className="text-xs">
-                            {tag}
-                          </Badge>
-                        ))}
+                    <h3 className="text-xl font-semibold text-foreground mb-2">{box.title}</h3>
+                    <p className="text-sm text-muted-foreground mb-4 flex-grow">{box.description}</p>
+                    <div className="space-y-3 w-full">
+                      <div className="flex items-center justify-center gap-2">
+                        {getStatusBadge(box.status)}
+                        {box.status === 'available' && box.link && (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="text-xs"
+                            asChild
+                          >
+                            <Link href={box.link} target="_blank" rel="noopener noreferrer">
+                              Visit App
+                            </Link>
+                          </Button>
+                        )}
                       </div>
-                    )}
+                      {box.tags && (
+                        <div className="flex flex-wrap gap-2 justify-center mt-2">
+                          {box.tags.map((tag) => (
+                            <Badge key={tag} variant="outline" className="text-xs">
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </Card>
-            ))}
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </div>
