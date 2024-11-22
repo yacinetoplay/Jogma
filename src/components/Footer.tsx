@@ -17,7 +17,7 @@ const creators = [
   },
   { 
     name: 'Rami Hergli', 
-    url: 'mi-hergli-portfolio.netlify.app',
+    url: 'https://rami-hergli-portfolio.netlify.app',
     color: 'from-purple-500 to-pink-500'
   }
 ]
