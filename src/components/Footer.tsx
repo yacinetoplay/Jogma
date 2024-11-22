@@ -12,12 +12,12 @@ const footerLinks = [
 const creators = [
   { 
     name: 'Yacine Makhloufi', 
-    url: 'https://your-portfolio-url.com',
+    url: 'https://yacine-makhloufi.vercel.app',
     color: 'from-blue-500 to-cyan-500'
   },
   { 
     name: 'Rami Hergli', 
-    url: 'https://your-portfolio-url.com',
+    url: 'mi-hergli-portfolio.netlify.app',
     color: 'from-purple-500 to-pink-500'
   }
 ]
