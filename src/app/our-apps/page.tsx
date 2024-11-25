@@ -18,12 +18,12 @@ interface BoxData {
 
 const boxesData: BoxData[] = [
   {
-    title: "MathGenius",
-    description: "An innovative math learning app that makes mathematics fun and engaging for students of all ages.",
-    imageSrc: "/placeholder.svg?height=200&width=200",
+    title: "Math-x",
+    description: "a Demo math app on pc that gives some random questions to solve.",
+    imageSrc: "/images/math-x.png",
     status: 'available',
     tags: ['Education', 'Mathematics'],
-    link: 'https://mathgenius-app.com'
+    link: 'https://www.mediafire.com/file/z2mihnb0onk11uf/app_gui.exe/file'
   },
   {
     title: "FitTrack",
