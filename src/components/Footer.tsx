@@ -51,7 +51,7 @@ export function Footer() {
 
           {/* Credits */}
           <p className="text-sm text-muted-foreground text-center">
-            Made with ❤️ by{' '}
+            Made by{' '}
             {creators.map((creator, index) => (
               <span key={creator.name}>
                 <Link
