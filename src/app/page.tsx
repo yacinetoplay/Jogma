@@ -44,9 +44,9 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Hero Visual */}
+            {/* Hero Visual - Hidden on mobile */}
             <motion.div 
-              className="flex-1 relative"
+              className="flex-1 relative hidden md:block"
               initial={{ x: 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}

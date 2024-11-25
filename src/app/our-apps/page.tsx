@@ -18,26 +18,26 @@ interface BoxData {
 
 const boxesData: BoxData[] = [
   {
-    title: "Math-X",
-    description: "A math pc app that gives some random questions to solve.",
+    title: "MathGenius",
+    description: "An innovative math learning app that makes mathematics fun and engaging for students of all ages.",
     imageSrc: "/placeholder.svg?height=200&width=200",
     status: 'available',
     tags: ['Education', 'Mathematics'],
-    link: 'https://www.mediafire.com/file/z2mihnb0onk11uf/app_gui.exe/file'
+    link: 'https://mathgenius-app.com'
   },
   {
-    title: "LanguageMaster",
-    description: "Master any language with our AI-powered language learning platform.",
-    imageSrc: "/placeholder.svg?height=200&width=200",
-    status: 'coming-soon',
-    tags: ['Education', 'Languages']
-  },
-  {
-    title: "StudyBuddy",
-    description: "Your personal study companion for better academic performance.",
-    imageSrc: "/placeholder.svg?height=200&width=200",
+    title: "FitTrack",
+    description: "Your personal fitness companion for achieving health goals.",
+    imageSrc: "/images/404.png",
     status: 'maintenance',
-    tags: ['Education', 'Productivity']
+    tags: ['Health', 'Fitness']
+  },
+  {
+    title: "BudgetBuddy",
+    description: "Take control of your finances with our smart budgeting app.",
+    imageSrc: "/images/404.png",
+    status: 'coming-soon',
+    tags: ['Finance', 'Planning']
   }
 ]
 
@@ -58,7 +58,7 @@ export default function OurApps() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col relative">
+    <div className="min-h-screen bg-background flex flex-col relative overflow-x-hidden">
       <ThreeScene selectedBox={selectedBox} />
       <div className="relative z-10 flex-grow flex justify-center items-center py-16">
         <div className="container mx-auto px-4">
@@ -68,8 +68,8 @@ export default function OurApps() {
               Discover our suite of innovative applications designed to enhance your daily life
             </p>
           </div>
-          <div className="flex justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl">
+          <div className="flex justify-center w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl">
               {boxesData.map((box, index) => (
                 <Card
                   key={index}

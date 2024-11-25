@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Code, Smartphone, Palette, Rocket, Shield } from 'lucide-react'
+import { Code, Smartphone, Palette, Globe, Rocket, Shield, Cpu } from 'lucide-react'
 
 const services = [
   {
@@ -21,6 +21,13 @@ const services = [
     description: "Native and cross-platform mobile applications for iOS and Android.",
     features: ["React Native", "Native APIs", "Push Notifications", "Offline Support"],
     color: "from-purple-500 to-pink-500"
+  },
+  {
+    icon: Cpu,
+    title: "IoT Solutions",
+    description: "Connect and control your devices with our smart IoT implementations.",
+    features: ["Sensor Integration", "Real-time Monitoring", "Smart Automation", "Data Analytics"],
+    color: "from-green-500 to-emerald-500"
   },
   {
     icon: Palette,

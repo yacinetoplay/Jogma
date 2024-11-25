@@ -8,6 +8,9 @@ import { ThemeProvider } from "@/components/theme-provider"
 export const metadata: Metadata = {
   title: "Jogma",
   description: "We craft innovative digital solutions for the modern world",
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({
